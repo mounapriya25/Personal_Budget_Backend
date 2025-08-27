@@ -44,9 +44,9 @@ app.use(session({
     secret:"MounaBank25",
     resave:false,
     saveUninitialized: false,
-  store: MongoStore.create({
+    /*store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URI // e.g. from MongoDB Atlas
-  }),
+  }),*/
   cookie: {
     httpOnly: true,
     secure: true,
@@ -164,15 +164,13 @@ app.get("/auth/github/callback",passport.authenticate("github",{failureRedirect:
         sameSite: "Lax",
         maxAge: 24 * 60 * 60 * 1000
     });
+    //in fronted if we use withCredentials true then the cookie is transfer from backend-frontend-backend
    console.log("GitHub Authentication Successful. User:", req.user); 
    res.redirect("https://budget-reactjs.vercel.app/home")
 
     
 })
-app.get("/check-session", (req, res) => {
-    console.log("Session Data:", req.session.usrdetails);
-    res.json({ session: req.session.usrdetails || "No session found" });
-});
+
 app.listen(8000,()=>{
     console.log("connected..");
 })

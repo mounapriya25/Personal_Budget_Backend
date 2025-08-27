@@ -120,14 +120,7 @@ rt.get("/setemail",(req,res)=>{
 
 //category 
 rt.post("/getCat", async (req, res) => {
-        /*console.log("Session Data in /getCat:", req.session);  // ✅ Debugging
-    
-        if (!req.session.usrdetails) {
-            return res.status(401).json({ message: "Unauthorized: No session found" });
-        }
-    
-        const em = req.session.usrdetails.email;
-*/
+      
         const {em}= req.body
         console.log(em)
         try {
@@ -574,7 +567,7 @@ rt.delete("/deleteAllRd",async(req,res)=>{
 
 //export
 rt.get("/exportpdf",async(req,res)=>{
-        const {em,from,to}=req.query;
+        const {em,from,to}=req.query;// becuse body is not work for get method
         const us=await schm.auth.findOne({email:em});
         if(!us){
               return res.json({mesage:"Not found"})

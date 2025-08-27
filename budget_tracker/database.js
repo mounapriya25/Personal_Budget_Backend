@@ -132,6 +132,7 @@ const account_sch= new mg.Schema({
     }
 })
 account_sch.index({ userId: 1, name: 1 }, { unique: true });
+//this is compound index which establish "or" relation between them  { userId: 1, name: 1 } or { unique: true } , 1 means ascending order
 const account=  mg.model("Account",account_sch);
 
 //category
@@ -158,8 +159,6 @@ const cat_sch= new mg.Schema({
 })
 
 cat_sch.index({ userId: 1, name: 1 }, { unique: true });
-
-
 const category=mg.model("category",cat_sch);
 
 

@@ -5,7 +5,7 @@ const auth = (req,res,next)=>{
     try{
         const token=req.headers["authorization"]
 
-            const t=token&&token.split(" ")[1];
+            const t=token && token.split(" ")[1];
             const ud=jwt.verify(t,process.env.JWT_KEY);
             console.log("auth",ud);
             if(ud){
